@@ -8,7 +8,8 @@ Created on Thu May 12 09:37:39 2022
 import numpy as np 
 import pandas as pd
 import matplotlib.pyplot as plt
-import pandas_datareader as data 
+#import pandas_datareader as data 
+import yfinance as yf
 from tensorflow.keras.models import load_model
 import streamlit as st
 from datetime import date
@@ -34,7 +35,7 @@ st.table(df_table)
 user_input = st.selectbox('Select Stock Ticker: ',('AAPL', 'ORCL', 'SBI.NS', 'PNB.NS', 'TSLA', 
                                                  'TCS.NS', 'AMZN', 'GOOG','NFLX', 'WMT'))
 
-df = data.DataReader(user_input, 'yahoo', start, end)
+df = yf.download(user_input, start, end)
 
 df.reset_index(inplace = True)
 
